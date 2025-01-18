@@ -4,6 +4,13 @@ default_vpc_cidr_block = "172.31.0.0/16"
 def_route_table_id     = "rtb-0dbc8b1b5e435955e"
 
 
+tags   = {
+  Application = "UserInfoApp"
+  Region      = "us-east-1"
+  Client      = "Hemanth"
+  BusinessUnit = "Cloud Autonomics"
+  CostCenter   = "UIApp123"
+}
 
 vpc = {
   main = {
@@ -24,3 +31,21 @@ vpc = {
     }
   }
 }
+
+alb = {
+  public = {
+    internal   = false
+    sg_port    = 80
+    load_balancer_type = "application"
+    sg_ingress_cidr    = [ "0.0.0.0/0" ]
+
+  }
+
+  private = {
+    internal   = true
+    sg_port    = 80
+    load_balancer_type = "application"
+    sg_ingress_cidr    =  [ "172.31.0.0/16" , "10.10.0.0/16" ]
+  }
+}
+
