@@ -64,9 +64,9 @@ module "app" {
   key_name= each.value["key_name"]
 
   public_lb_dns_name = lookup(lookup(lookup(module.alb , "public" , null) , "alb" ,null), "dns_name",null)
-  private_lb_dns_name = lookup(lookup(lookup(module.alb , "internal" , null) , "alb" ,null), "dns_name",null)
+  private_lb_dns_name = lookup(lookup(lookup(module.alb , "private" , null) , "alb" ,null), "dns_name",null)
   private_lb_listener_arn = lookup(lookup(lookup(module.alb , "public" ,null ), "lb_listener" , null) , "arn" , null )
-  public_alb_listener_arn = lookup(lookup(lookup(module.alb , "internal" ,null ), "lb_listener" , null) , "arn" , null )
+  public_alb_listener_arn = lookup(lookup(lookup(module.alb , "private" ,null ), "lb_listener" , null) , "arn" , null )
 
 
 

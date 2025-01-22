@@ -54,7 +54,7 @@ alb = {
 
 app = {
   frontend = {
-    app-port    = 80
+    app_port    = 80
     health_check_path = "/"
     lb_priority = 1
     instance_type = "t3.micro"
