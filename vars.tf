@@ -7,7 +7,7 @@ variable "tags" {}
 
 variable "alb" {}
 variable "az" {}
-
+variable "app" {}
 variable "hosted_zone_id" {}
 
 
