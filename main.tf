@@ -36,3 +36,46 @@ module "alb" {
 }
 
 
+module "app" {
+  source = "git::https://github.com/hemanthtadikonda/UI-App-services.git"
+
+  for_each =  var.app
+
+  env      = var.env
+  tags     = var.tags
+  default_vpc_id      = var.default_vpc_id
+  az     = var.az
+  hosted_zone_id = var.hosted_zone_id
+  default_vpc_cidr_block = var.default_vpc_cidr_block
+
+  vpc_id  = local.vpc_id
+  sg_ingress_cidr_blocks = local.app_subnets_cidr
+  app_subnet_ids       = local.app_subnets
+
+  service   = each.key
+  app_port  = each.value["app_port"]
+  health_check_path  = each.value["health_check_path"]
+  lb_priority = each.value["lb_priority"]
+  instance_type = each.value["instance_type"]
+  desired_capacity = each.value["desired_capacity"]
+  max_size = each.value["max_size"]
+  min_size =each.value["min_size"]
+  ami_id =each.value["ami_id"]
+  key_name= each.value["key_name"]
+
+  public_lb_dns_name = lookup(lookup(lookup(module.alb , "public" , null) , "alb" ,null), "dns_name",null)
+  private_lb_dns_name = lookup(lookup(lookup(module.alb , "internal" , null) , "alb" ,null), "dns_name",null)
+  private_lb_listener_arn = lookup(lookup(lookup(module.alb , "public" ,null ), "lb_listener" , null) , "arn" , null )
+  public_alb_listener_arn = lookup(lookup(lookup(module.alb , "internal" ,null ), "lb_listener" , null) , "arn" , null )
+
+
+
+
+
+}
+
+
+
+
+
+

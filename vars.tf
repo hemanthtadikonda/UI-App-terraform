@@ -6,6 +6,8 @@ variable "def_route_table_id" {}
 variable "tags" {}
 
 variable "alb" {}
+variable "az" {}
 
+variable "hosted_zone_id" {}
 
 
