@@ -47,7 +47,7 @@ alb = {
     internal   = true
     sg_port    = 80
     load_balancer_type = "application"
-    sg_ingress_cidr    =  [ "172.31.0.0/16" , "10.10.0.0/16" ]
+    sg_ingress_cidr    =  [ "172.31.0.0/16" , "10.0.0.0/16" ]
   }
 }
 
