@@ -65,8 +65,8 @@ module "app" {
 
   public_lb_dns_name = lookup(lookup(lookup(module.alb , "public" , null) , "alb" ,null), "dns_name",null)
   private_lb_dns_name = lookup(lookup(lookup(module.alb , "private" , null) , "alb" ,null), "dns_name",null)
-  private_lb_listener_arn = lookup(lookup(lookup(module.alb , "public" ,null ), "lb_listener" , null) , "arn" , null )
-  public_alb_listener_arn = lookup(lookup(lookup(module.alb , "private" ,null ), "lb_listener" , null) , "arn" , null )
+  public_alb_listener_arn = lookup(lookup(lookup(module.alb , "public" ,null ), "lb_listener" , null) , "arn" , null )
+  private_lb_listener_arn = lookup(lookup(lookup(module.alb , "private" ,null ), "lb_listener" , null) , "arn" , null )
 
 
 
